@@ -11,9 +11,34 @@
   position: relative;
 }
 
-#todosContainer div img{
+#todosContainer div .cross{
   position: absolute;
   width: 15px;
   top: 5px;
   right: 5px;
+}
+
+#todosContainer div .edit{
+  position: absolute;
+  width: 15px;
+  top: 5px;
+  left: 5px;
+}
+
+#editModal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.336);
+  left: 0;
+  top: 0;
+}
+
+#editModal div{
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
 }

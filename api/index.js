@@ -49,6 +49,29 @@ app.delete('/todos/:id', (req, res) => {
   });
 });
 
+app.put('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const { description, categorie } = req.body;
+
+  if (!categorie || !description) {
+      return res.status(400).send('La catégorie et la description sont requises.');
+  }
+
+  db.query('UPDATE todo SET description = ?, categorie = ? WHERE id = ?', [description, categorie, id], (error, results) => {
+      if (error) {
+          console.error('Erreur lors de la mise à jour de la todo:', error);
+          return res.status(500).send('Erreur serveur');
+      }
+
+      if (results.affectedRows === 0) {
+          return res.status(404).send('Todo non trouvée');
+      }
+
+      res.status(200).send('Todo mise à jour avec succès');
+  });
+});
+
+
 
 
 app.listen(PORT, () => {
