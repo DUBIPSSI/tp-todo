@@ -63,10 +63,16 @@ function displayEditModal() {
 
 function displayTodo(todo) {
     const div = document.createElement('div');
+    div.className = "aTodo";
 
     const p = document.createElement('p');
-    console.log(todo.description);
     p.textContent = todo.description;
+
+    const date = document.createElement('p');
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
+    const maDate = new Date(todo.created_at);  
+    date.className = "date";
+    date.textContent = new Intl.DateTimeFormat('fr-FR', options).format(maDate);
 
     const edit = document.createElement('img');
     edit.className = "edit";
@@ -115,6 +121,7 @@ function displayTodo(todo) {
     })
 
     div.appendChild(p);
+    div.appendChild(date);
     div.appendChild(edit);
     div.appendChild(cross);
     todosContainer.appendChild(div);
