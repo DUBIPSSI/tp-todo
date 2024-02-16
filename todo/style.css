@@ -1,7 +1,11 @@
+#todos {
+  margin-top: 30px;
+}
+
 #todosContainer {
   display: flex;
   gap: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 #todosContainer div{

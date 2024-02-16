@@ -1,6 +1,7 @@
 const todosContainer = document.getElementById('todosContainer');
 const editModal = document.getElementById('editModal');
 const modifTodo = document.getElementById('modifTodo');
+const selectCategorie = document.getElementById('selectCategorie');
 
 document.addEventListener('click', (e)=>{
     if (e.target.id === "addTodo") {
@@ -25,6 +26,10 @@ document.addEventListener('click', (e)=>{
         editModal.style.display = "none";
     }
 })
+
+selectCategorie.addEventListener('input', ()=>{
+    fetchTodos();
+})
 function fetchTodos() {
     todosContainer.innerHTML = '';
     fetch('http://localhost:3000/todos')
@@ -35,9 +40,18 @@ function fetchTodos() {
         return response.json();
     })
     .then(data => {
-        data.forEach(todo => {
-            displayTodo(todo)
-        });
+        const selectedCategorie = document.getElementById('selectCategorie').value;
+        if (selectedCategorie === "all") {
+            data.forEach(todo => {
+                displayTodo(todo);
+            });
+        } else {
+            data.forEach(todo => {
+                if (todo.categorie == selectedCategorie) {
+                    displayTodo(todo);
+                }
+            });
+        }
     })
     .catch(error => console.error('trop relou ca bug:', error));
 }
