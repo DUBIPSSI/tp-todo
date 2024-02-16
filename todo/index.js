@@ -18,7 +18,7 @@ document.addEventListener('click', (e)=>{
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            fetchTodos();
+            getTodos();
             return response.json();
         })
     }
@@ -28,9 +28,9 @@ document.addEventListener('click', (e)=>{
 })
 
 selectCategorie.addEventListener('input', ()=>{
-    fetchTodos();
+    getTodos();
 })
-function fetchTodos() {
+function getTodos() {
     todosContainer.innerHTML = '';
     fetch('http://localhost:3000/todos')
     .then(response => {
@@ -91,7 +91,7 @@ function displayTodo(todo) {
                     throw new Error(`Error: ${response.statusText}`);
                 }
                 editModal.style.display='none';
-                fetchTodos();
+                getTodos();
                 return response.text();
             })
         })
@@ -119,4 +119,4 @@ function displayTodo(todo) {
     div.appendChild(cross);
     todosContainer.appendChild(div);
 }
-fetchTodos();
+getTodos();
