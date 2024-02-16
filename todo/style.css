@@ -3,9 +3,10 @@
 }
 
 #todosContainer {
-  display: flex;
+  display: grid;
   gap: 30px;
   margin-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 #todosContainer div{

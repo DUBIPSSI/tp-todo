@@ -2,6 +2,7 @@ const todosContainer = document.getElementById('todosContainer');
 const editModal = document.getElementById('editModal');
 const modifTodo = document.getElementById('modifTodo');
 const selectCategorie = document.getElementById('selectCategorie');
+const descriptionInput = document.getElementById('todoDescription');
 
 document.addEventListener('click', (e)=>{
     if (e.target.id === "addTodo") {
@@ -18,6 +19,7 @@ document.addEventListener('click', (e)=>{
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+            descriptionInput.value = "";
             getTodos();
             return response.json();
         })
